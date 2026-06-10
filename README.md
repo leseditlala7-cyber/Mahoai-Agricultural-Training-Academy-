@@ -4,7 +4,7 @@ A professional business website for Mahoai Agricultural Training Academy, a lead
 
 ## About Mahoai Agric
 
-Established in 2010, Mahoai Agricultural Training Academy and Projects is a registered and accredited multidisciplinary service provider based in Pretoria, Gauteng. We are a Level 1 BBBEE company (100% female-owned) that bridges the gap between education and employment through:
+Established in 2010, Mahoai Agricultural Training Academy and Projects is a registered and accredited multidisciplinary service provider based in Pretoria, Gauteng and Mpumalanga. We are a Level 1 BBBEE company (100% female-owned) that bridges the gap between education and employment through:
 
 - **Accredited Training Academy**: DHET-registered programs delivering sector-specific skills
 - **Strategic Recruitment Agency**: Professional placement services connecting skilled individuals with career opportunities
