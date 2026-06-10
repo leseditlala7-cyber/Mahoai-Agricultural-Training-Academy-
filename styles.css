@@ -9,14 +9,14 @@
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
 }
 
 .team-member {
     background: white;
-    padding: 30px;
+    padding: 30px 20px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -30,9 +30,11 @@
 
 .member-image {
     overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    height: 250px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    height: 180px;
+    width: 180px;
+    flex-shrink: 0;
 }
 
 .member-image img {
@@ -40,28 +42,28 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 10px;
+    border-radius: 50%;
 }
 
 .member-info h3 {
     color: var(--primary-blue);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 5px;
 }
 
 .member-position {
     color: var(--secondary-blue);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
 .member-bio {
     color: var(--gray-text);
-    line-height: 1.7;
+    line-height: 1.6;
     margin-bottom: 20px;
-    font-size: 0.9rem;
-    text-align: left;
+    font-size: 0.85rem;
+    text-align: center;
 }
 
 .member-contact {
@@ -104,13 +106,13 @@
 
 .interns-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
 .intern-card {
     background: linear-gradient(135deg, var(--lighter-blue) 0%, #f0f8ff 100%);
-    padding: 25px;
+    padding: 30px 20px;
     border-radius: 10px;
     text-align: center;
     border: 2px solid var(--secondary-blue);
@@ -124,9 +126,11 @@
 
 .intern-image {
     overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    height: 160px;
+    width: 160px;
+    flex-shrink: 0;
 }
 
 .intern-image img {
@@ -134,7 +138,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 10px;
+    border-radius: 50%;
 }
 
 .intern-card h4 {
@@ -147,4 +151,31 @@
     color: var(--secondary-blue);
     font-size: 0.95rem;
     font-weight: 600;
+}
+
+/* Responsive Design - Team & Interns */
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .interns-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .interns-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .member-image,
+    .intern-image {
+        height: 150px;
+        width: 150px;
+    }
 }
