@@ -507,7 +507,85 @@ body {
     color: var(--gray-text);
     line-height: 1.8;
 }
+/* Clients Section */
+.clients {
+    padding: 80px 20px;
+    background: var(--white);
+}
 
+.clients h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+    align-items: center;
+    justify-items: center;
+}
+
+.client-logo {
+    background: var(--lighter-blue);
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
+    width: 160px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 52, 122, 0.1);
+    cursor: pointer;
+}
+
+.client-logo:hover {
+    transform: scale(1.1) rotateY(5deg);
+    box-shadow: 0 15px 40px rgba(0, 52, 122, 0.2);
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--secondary-blue) 100%);
+}
+
+.client-logo img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.client-logo:hover img {
+    filter: grayscale(0%);
+}
+
+/* Responsive - Clients */
+@media (max-width: 1024px) {
+    .clients-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+    }
+    
+    .client-logo {
+        height: 140px;
+        width: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .clients-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 25px;
+    }
+    
+    .client-logo {
+        height: 120px;
+        width: 120px;
+        padding: 20px;
+    }
+}
 /* Team Section */
 .team {
     background: linear-gradient(135deg, #f8f9fa 0%, var(--lighter-blue) 100%);
