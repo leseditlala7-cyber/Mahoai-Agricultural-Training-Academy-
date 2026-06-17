@@ -585,8 +585,9 @@ body {
         width: 120px;
         padding: 20px;
     }
- /* Our Learners in Action */
-.clients {
+    
+ /* Our Learners Section */
+.learners {
     padding: 80px 20px;
     background: var(--white);
 }
@@ -664,6 +665,7 @@ body {
         padding: 20px;
     }
 }
+    
 /* Team Section */
 .team {
     background: linear-gradient(135deg, #f8f9fa 0%, var(--lighter-blue) 100%);
