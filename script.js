@@ -84,4 +84,4 @@ window.addEventListener('scroll', () => {
         } else {
             link.style.borderBottom = 'none';
         }
-    });
+    })
