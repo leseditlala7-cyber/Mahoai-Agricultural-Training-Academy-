@@ -585,8 +585,7 @@ body {
         width: 120px;
         padding: 20px;
     }
-    
- /* Our Learners Section */
+/* Our Learners Section */
 .learners {
     padding: 80px 20px;
     background: var(--white);
@@ -601,11 +600,14 @@ body {
 
 .learners-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
     margin-top: 60px;
     align-items: center;
     justify-items: center;
+    max-width: 600px;           /* Limits width when there are few items */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .learner-image {
@@ -615,25 +617,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 160px;
-    width: 160px;
+    height: 180px;              /* Slightly bigger for photos */
+    width: 180px;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 52, 122, 0.1);
     cursor: pointer;
 }
 
 .learner-image:hover {
-    transform: scale(1.1) rotateY(5deg);
+    transform: scale(1.08) rotateY(5deg);
     box-shadow: 0 15px 40px rgba(0, 52, 122, 0.2);
     background: linear-gradient(135deg, var(--accent-blue) 0%, var(--secondary-blue) 100%);
 }
 
 .learner-image img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95%;
+    max-height: 95%;
     object-fit: contain;
-    filter: grayscale(100%);
+    filter: grayscale(80%);
     transition: filter 0.3s ease;
+    border-radius: 8px;         /* Softer look for people photos */
 }
 
 .learner-image:hover img {
@@ -643,29 +646,27 @@ body {
 /* Responsive - Learners */
 @media (max-width: 1024px) {
     .learners-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     
     .learner-image {
-        height: 140px;
-        width: 140px;
+        height: 160px;
+        width: 160px;
     }
 }
 
 @media (max-width: 768px) {
     .learners-grid {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 25px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 30px;
     }
     
     .learner-image {
-        height: 120px;
-        width: 120px;
+        height: 150px;
+        width: 150px;
         padding: 20px;
     }
-}
-    
+}   
 /* Team Section */
 .team {
     background: linear-gradient(135deg, #f8f9fa 0%, var(--lighter-blue) 100%);
