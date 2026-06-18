@@ -9,7 +9,7 @@ Established in 2010, Mahoai Agricultural Training Academy and Projects is a regi
 - **Accredited Training Academy**: DHET-registered programs delivering sector-specific skills
 - **Strategic Recruitment Agency**: Professional placement services connecting skilled individuals with career opportunities
 
-## Features
+## Features 
 
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop
 - **Professional Blue Branding**: Color scheme matching company logo
