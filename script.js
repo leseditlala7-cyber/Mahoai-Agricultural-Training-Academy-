@@ -30,16 +30,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact Form Submission
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Thank you for your message! We will get back to you shortly.');
-        this.reset();
-    });
-}
-
 // Scroll Animation for Cards
 const observerOptions = {
     threshold: 0.1,
