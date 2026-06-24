@@ -419,13 +419,19 @@
                     </div>
                 </div>
 
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <input type="text" placeholder="Subject">
-                    <textarea placeholder="Your Message" rows="6" required></textarea>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+              <form class="contact-form" action="https://formsubmit.co/info@mahoai.co.za" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="text" name="subject" placeholder="Subject">
+    <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+    
+    <!-- Hidden fields - Recommended -->
+    <input type="hidden" name="_next" value="https://miles.aserv.co.za/"> 
+    <input type="hidden" name="_subject" value="New Contact Message from Website">
+    <input type="hidden" name="_captcha" value="false">
+    
+    <button type="submit" class="submit-btn">Send Message</button>
+</form> 
             </div>
         </div>
     </section>
