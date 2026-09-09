@@ -74,8 +74,10 @@ window.addEventListener('scroll', () => {
         } else {
             link.style.borderBottom = 'none';
         }
-    })
-    // ==================== COVER FLOW CAROUSELS ====================
+    });
+});
+
+// ==================== COVER FLOW CAROUSELS ====================
 document.addEventListener('DOMContentLoaded', () => {
     const sessions = document.querySelectorAll('.coverflow-wrapper');
 
@@ -92,15 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let startX = 0;
 
         // Create dots
-        items.forEach((_, i) => {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goTo(i));
-            dotsContainer.appendChild(dot);
-        });
+        if (dotsContainer) {
+            items.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            });
+        }
 
-        const dots = dotsContainer.querySelectorAll('.dot');
+        const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
 
         function update() {
             items.forEach((item, i) => {
@@ -140,8 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Buttons
-        nextBtn.addEventListener('click', next);
-        prevBtn.addEventListener('click', prev);
+        if (nextBtn) nextBtn.addEventListener('click', next);
+        if (prevBtn) prevBtn.addEventListener('click', prev);
 
         // Autoplay
         function startAutoplay() {
@@ -192,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             startAutoplay();
         }, { passive: true });
 
-        // Lightbox on centre image click
+        // Lightbox
         items.forEach(item => {
             item.addEventListener('click', () => {
                 if (item.classList.contains('active')) {
@@ -204,16 +208,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        update(); // initial
+        update(); // initial call
     });
 
     // Close lightbox
-    document.querySelector('.lightbox-close').addEventListener('click', () => {
-        document.getElementById('lightbox').classList.remove('active');
-    });
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-        if (e.target.id === 'lightbox') {
-            e.target.classList.remove('active');
-        }
-    });
+    const lightboxClose = document.querySelector('.lightbox-close');
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', () => {
+            document.getElementById('lightbox').classList.remove('active');
+        });
+    }
+
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                e.target.classList.remove('active');
+            }
+        });
+    }
 });
