@@ -75,3 +75,145 @@ window.addEventListener('scroll', () => {
             link.style.borderBottom = 'none';
         }
     })
+    // ==================== COVER FLOW CAROUSELS ====================
+document.addEventListener('DOMContentLoaded', () => {
+    const sessions = document.querySelectorAll('.coverflow-wrapper');
+
+    sessions.forEach(wrapper => {
+        const track = wrapper.querySelector('.coverflow-track');
+        const items = Array.from(track.querySelectorAll('.coverflow-item'));
+        const prevBtn = wrapper.querySelector('.prev');
+        const nextBtn = wrapper.querySelector('.next');
+        const dotsContainer = document.querySelector(`.coverflow-dots[data-session="${wrapper.dataset.session}"]`);
+        
+        let current = 0;
+        let autoplayInterval;
+        let isDragging = false;
+        let startX = 0;
+
+        // Create dots
+        items.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('.dot');
+
+        function update() {
+            items.forEach((item, i) => {
+                item.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next', 'hidden');
+                
+                if (i === current) {
+                    item.classList.add('active');
+                } else if (i === current - 1) {
+                    item.classList.add('prev');
+                } else if (i === current + 1) {
+                    item.classList.add('next');
+                } else if (i === current - 2) {
+                    item.classList.add('far-prev');
+                } else if (i === current + 2) {
+                    item.classList.add('far-next');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === current);
+            });
+        }
+
+        function goTo(index) {
+            current = (index + items.length) % items.length;
+            update();
+        }
+
+        function next() {
+            goTo(current + 1);
+        }
+
+        function prev() {
+            goTo(current - 1);
+        }
+
+        // Buttons
+        nextBtn.addEventListener('click', next);
+        prevBtn.addEventListener('click', prev);
+
+        // Autoplay
+        function startAutoplay() {
+            autoplayInterval = setInterval(next, 4500);
+        }
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        wrapper.addEventListener('mouseenter', stopAutoplay);
+        wrapper.addEventListener('mouseleave', startAutoplay);
+        startAutoplay();
+
+        // Drag / Swipe
+        track.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            stopAutoplay();
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const diff = e.clientX - startX;
+            if (diff > 60) {
+                prev();
+                isDragging = false;
+            } else if (diff < -60) {
+                next();
+                isDragging = false;
+            }
+        });
+
+        // Touch support
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            stopAutoplay();
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+            if (diff > 50) prev();
+            else if (diff < -50) next();
+            startAutoplay();
+        }, { passive: true });
+
+        // Lightbox on centre image click
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                if (item.classList.contains('active')) {
+                    const lightbox = document.getElementById('lightbox');
+                    const lightboxImg = lightbox.querySelector('.lightbox-img');
+                    lightboxImg.src = item.querySelector('img').src;
+                    lightbox.classList.add('active');
+                }
+            });
+        });
+
+        update(); // initial
+    });
+
+    // Close lightbox
+    document.querySelector('.lightbox-close').addEventListener('click', () => {
+        document.getElementById('lightbox').classList.remove('active');
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+        if (e.target.id === 'lightbox') {
+            e.target.classList.remove('active');
+        }
+    });
+});
