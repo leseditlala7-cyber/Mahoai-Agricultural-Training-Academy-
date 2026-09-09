@@ -1,4 +1,4 @@
-// Mobile Menu Toggle
+// ==================== MOBILE MENU ====================
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -8,7 +8,7 @@ if (hamburger) {
     });
 }
 
-// Close mobile menu when link is clicked
+// Close mobile menu when a link is clicked
 const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -16,7 +16,7 @@ navLinks.forEach(link => {
     });
 });
 
-// Smooth Scrolling
+// ==================== SMOOTH SCROLLING ====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -30,7 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Scroll Animation for Cards
+// ==================== SCROLL ANIMATION FOR CARDS ====================
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -53,7 +53,7 @@ cards.forEach(card => {
     observer.observe(card);
 });
 
-// Active Navigation Link
+// ==================== ACTIVE NAVIGATION LINK ====================
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -61,7 +61,7 @@ window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 200) {
+        if (window.scrollY >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
@@ -87,14 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const prevBtn = wrapper.querySelector('.prev');
         const nextBtn = wrapper.querySelector('.next');
         const dotsContainer = document.querySelector(`.coverflow-dots[data-session="${wrapper.dataset.session}"]`);
-        
+
         let current = 0;
-        let autoplayInterval;
+        let autoplayInterval = null;
         let isDragging = false;
         let startX = 0;
 
         // Create dots
         if (dotsContainer) {
+            dotsContainer.innerHTML = '';
             items.forEach((_, i) => {
                 const dot = document.createElement('span');
                 dot.classList.add('dot');
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function update() {
             items.forEach((item, i) => {
                 item.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next', 'hidden');
-                
+
                 if (i === current) {
                     item.classList.add('active');
                 } else if (i === current - 1) {
@@ -149,17 +150,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Autoplay
         function startAutoplay() {
+            stopAutoplay();
             autoplayInterval = setInterval(next, 4500);
         }
+
         function stopAutoplay() {
-            clearInterval(autoplayInterval);
+            if (autoplayInterval) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+            }
         }
 
         wrapper.addEventListener('mouseenter', stopAutoplay);
         wrapper.addEventListener('mouseleave', startAutoplay);
         startAutoplay();
 
-        // Drag / Swipe
+        // Mouse drag
         track.addEventListener('mousedown', (e) => {
             isDragging = true;
             startX = e.clientX;
@@ -182,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Touch support
+        // Touch / swipe support
         track.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             stopAutoplay();
@@ -196,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             startAutoplay();
         }, { passive: true });
 
-        // Lightbox
+        // Lightbox on centre image click
         items.forEach(item => {
             item.addEventListener('click', () => {
                 if (item.classList.contains('active')) {
@@ -208,7 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        update(); // initial call
+        // Initial display
+        update();
     });
 
     // Close lightbox
